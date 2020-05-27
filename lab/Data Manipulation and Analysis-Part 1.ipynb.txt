@@ -1,0 +1,1300 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "# Pandas\n",
+    "\n",
+    "![](http://pandas.pydata.org/_static/pandas_logo.png)\n",
+    "[Pandas](http://pandas.pydata.org/) is a software library written for the Python programming language for data manipulation and analysis. In particular, it offers data structures and operations for manipulating numerical tables and time series. Pandas is free software released under the three-clause BSD license. The name is derived from the term _panel data_, an econometrics term for multidimensional structured data sets.\n",
+    "\n",
+    "#### Contents\n",
+    "* [Series](#Series)\n",
+    "* [DataFrames](#DataFrames)\n",
+    "\n",
+    "\n",
+    "\n",
+    "NB: This notebook misses some methods of joining and concatenating and merging data. The instances in which those are useful are quite specific, so we'll see some examples but won't have a section in this notebook for reference. \n",
+    "\n",
+    "#### Resources:  \n",
+    "* [Pandas Documentation](http://pandas.pydata.org/pandas-docs/stable/index.html), especially\n",
+    "[10 minutes to pandas](http://pandas.pydata.org/pandas-docs/stable/10min.html)  \n",
+    "* [The Data Incubator](https://www.thedataincubator.com/)  \n",
+    "* [Hernan Rojas' learn-pandas](https://bitbucket.org/hrojas/learn-pandas)  \n",
+    "* [Harvard CS109 lab1 content](https://github.com/cs109/2015lab1)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Series"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "collapsed": true
+   },
+   "outputs": [],
+   "source": [
+    "#import pandas library as pd\n",
+    "import pandas as pd\n",
+    "#import matplotlib library as plt \n",
+    "import matplotlib.pyplot as plt\n",
+    "import numpy as np"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "collapsed": true
+   },
+   "outputs": [],
+   "source": [
+    "#create a pandas series from list\n",
+    "#observe the dtype\n",
+    "animals = ['Tiger', 'Bear', 'Moose']\n",
+    "pd.Series(animals)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "collapsed": true
+   },
+   "outputs": [],
+   "source": [
+    "#create a pandas series from list\n",
+    "#observe the dtype\n",
+    "numbers = [1, 2, 3]\n",
+    "pd.Series(numbers)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "collapsed": true
+   },
+   "outputs": [],
+   "source": [
+    "#create a pandas series with None\n",
+    "#observe the dtype\n",
+    "animals = ['Tiger', 'Bear', None]\n",
+    "pd.Series(animals)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "collapsed": true
+   },
+   "outputs": [],
+   "source": [
+    "#create a pandas series with None\n",
+    "#observe the dtype\n",
+    "numbers = [1, 2, None]\n",
+    "pd.Series(numbers)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "collapsed": true
+   },
+   "outputs": [],
+   "source": [
+    "#create a pandas series from dictionary\n",
+    "sports = {'Archery': 'Bhutan',\n",
+    "          'Golf': 'Scotland',\n",
+    "          'Sumo': 'Japan',\n",
+    "          'Taekwondo': 'South Korea'}\n",
+    "s = pd.Series(sports)\n",
+    "s"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "collapsed": true
+   },
+   "outputs": [],
+   "source": [
+    "#check the type for s\n",
+    "type(s)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "collapsed": true
+   },
+   "outputs": [],
+   "source": [
+    "#notice the index for s\n",
+    "s.index"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "collapsed": true
+   },
+   "outputs": [],
+   "source": [
+    "s.values"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "collapsed": true
+   },
+   "outputs": [],
+   "source": [
+    "s['Golf']"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "collapsed": true
+   },
+   "outputs": [],
+   "source": [
+    "#create a series from list and index\n",
+    "sr = pd.Series(['Tiger', 'Bear', 'Moose'], index=['India', 'America', 'Canada'])\n",
+    "sr"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "collapsed": true
+   },
+   "outputs": [],
+   "source": [
+    "#create an index with no value\n",
+    "sports = {'Archery': 'Bhutan',\n",
+    "          'Golf': 'Scotland',\n",
+    "          'Sumo': 'Japan',\n",
+    "          'Taekwondo': 'South Korea'}\n",
+    "sp1 = pd.Series(sports, index=['Golf', 'Sumo', 'Hockey'])\n",
+    "sp1"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Exercise\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "collapsed": true
+   },
+   "outputs": [],
+   "source": [
+    "# Which country is famous for Sumo?"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Querying a series"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "collapsed": true
+   },
+   "outputs": [],
+   "source": [
+    "sports = {'Archery': 'Bhutan',\n",
+    "          'Golf': 'Scotland',\n",
+    "          'Sumo': 'Japan',\n",
+    "          'Taekwondo': 'South Korea'}\n",
+    "s = pd.Series(sports)\n",
+    "s"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "collapsed": true
+   },
+   "outputs": [],
+   "source": [
+    "s.iloc?"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "collapsed": true
+   },
+   "outputs": [],
+   "source": [
+    "#iloc to query based on index\n",
+    "s.iloc[3]"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "collapsed": true
+   },
+   "outputs": [],
+   "source": [
+    "#loc to query based on location\n",
+    "s.loc['Golf']"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "collapsed": true
+   },
+   "outputs": [],
+   "source": [
+    "#to query based on index\n",
+    "s[3]"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "collapsed": true
+   },
+   "outputs": [],
+   "source": [
+    "s['Golf']"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "collapsed": true
+   },
+   "outputs": [],
+   "source": [
+    "sports = {99: 'Bhutan',\n",
+    "          100: 'Scotland',\n",
+    "          101: 'Japan',\n",
+    "          102: 'South Korea'}\n",
+    "s = pd.Series(sports)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "collapsed": true
+   },
+   "outputs": [],
+   "source": [
+    "s[0] #This won't call s.iloc[0] as one might expect, it generates an error instead"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "collapsed": true
+   },
+   "outputs": [],
+   "source": [
+    "s[99]"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "collapsed": true
+   },
+   "outputs": [],
+   "source": [
+    "s.iloc[0]"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "collapsed": true
+   },
+   "outputs": [],
+   "source": [
+    "#create a pandas series from a list and a dictionary\n",
+    "original_sports = pd.Series({'Archery': 'Bhutan',\n",
+    "                             'Golf': 'Scotland',\n",
+    "                             'Sumo': 'Japan',\n",
+    "                             'Sepak takraw': 'Malaysia',\n",
+    "                             'Taekwondo': 'South Korea'})\n",
+    "\n",
+    "cricket_loving_countries = pd.Series(['Australia',\n",
+    "                                      'Barbados',\n",
+    "                                      'Pakistan',\n",
+    "                                      'England'], \n",
+    "                                index=['Cricket',\n",
+    "                                       'Cricket',\n",
+    "                                       'Cricket',\n",
+    "                                       'Cricket'])\n",
+    "all_countries = original_sports.append(cricket_loving_countries)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "collapsed": true
+   },
+   "outputs": [],
+   "source": [
+    "all_countries"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Exercise"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "collapsed": true
+   },
+   "outputs": [],
+   "source": [
+    "#using loc to list all countries with the index 'Cricket'\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## DataFrames\n",
+    "\n",
+    "\n",
+    "A data frame is like a table, with rows and columns (e.g., as in SQL or Excel).  \n",
+    "Except that :\n",
+    "  - The rows can be indexed by something interesting (there is special support for labels like categorical and timeseries data).\n",
+    "  - Cells can store any Python object. Like in SQL, columns must have a homogenous type.\n",
+    "  - Instead of \"NULL\", the name for a non-existent value is \"NA\".  Unlike R, Python's data frames only support NAs in columns of some data types (basically: floating point numbers and 'objects') -- but this is mostly a non-issue (because it will \"up-type\" integers to float64, etc.)\n",
+    "  \n",
+    "Each of a ```DataFrame```'s columns are an individual ```Series```, (more correctly, a dataframe is a dictionary of Series).  The entires series must have a homogenous type. "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 31,
+   "metadata": {
+    "collapsed": true
+   },
+   "outputs": [],
+   "source": [
+    "# Example 1\n",
+    "# Let's make a dataset that consists of Malaysian States\n",
+    "# and the size of each state in km2.  Let's try and rank \n",
+    "# the states of Malaysia by land area, and figure out if East\n",
+    "# Malaysia is larger or smaller than West Malaysia\n",
+    "\n",
+    "states = ['Johor','Kedah','Kelantan','Melaka', \n",
+    "          'Negeri Sembilan','Pahang','Perak','Perlis',\n",
+    "          'Penang','Sabah', 'Sarawak','Selangor','Terengganu']\n",
+    "area = [19210,9500,15099,1664,6686,36137,21035,\n",
+    "        821,1048,73631,124450,8104,13035]"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "collapsed": true
+   },
+   "outputs": [],
+   "source": [
+    "# Use the zip function to merge the two lists together\n",
+    "zip?"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 41,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "[('Johor', 19210),\n",
+       " ('Kedah', 9500),\n",
+       " ('Kelantan', 15099),\n",
+       " ('Melaka', 1664),\n",
+       " ('Negeri Sembilan', 6686),\n",
+       " ('Pahang', 36137),\n",
+       " ('Perak', 21035),\n",
+       " ('Perlis', 821),\n",
+       " ('Penang', 1048),\n",
+       " ('Sabah', 73631),\n",
+       " ('Sarawak', 124450),\n",
+       " ('Selangor', 8104),\n",
+       " ('Terengganu', 13035)]"
+      ]
+     },
+     "execution_count": 41,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "# Area Data Set\n",
+    "state_area = list(zip(states, area))\n",
+    "state_area"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "We now will use the ***pandas*** library to export this data set into a csv file. \n",
+    "\n",
+    "***df*** will be a ***DataFrame*** object. You can think of this object holding the contents of states in a format similar to a sql table or an excel spreadsheet. Lets take a look below at the contents inside ***df***."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 42,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style>\n",
+       "    .dataframe thead tr:only-child th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: left;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>State</th>\n",
+       "      <th>Area</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>0</th>\n",
+       "      <td>Johor</td>\n",
+       "      <td>19210</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>1</th>\n",
+       "      <td>Kedah</td>\n",
+       "      <td>9500</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>2</th>\n",
+       "      <td>Kelantan</td>\n",
+       "      <td>15099</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>3</th>\n",
+       "      <td>Melaka</td>\n",
+       "      <td>1664</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>4</th>\n",
+       "      <td>Negeri Sembilan</td>\n",
+       "      <td>6686</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "             State   Area\n",
+       "0            Johor  19210\n",
+       "1            Kedah   9500\n",
+       "2         Kelantan  15099\n",
+       "3           Melaka   1664\n",
+       "4  Negeri Sembilan   6686"
+      ]
+     },
+     "execution_count": 42,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "df = pd.DataFrame(data = state_area, columns=['State', 'Area'])\n",
+    "#head to show first 5 rows of data\n",
+    "df.head()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 34,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "<class 'pandas.core.frame.DataFrame'>\n",
+      "\n",
+      "<class 'pandas.core.frame.DataFrame'>\n",
+      "RangeIndex: 13 entries, 0 to 12\n",
+      "Data columns (total 2 columns):\n",
+      "State    13 non-null object\n",
+      "Area     13 non-null int64\n",
+      "dtypes: int64(1), object(1)\n",
+      "memory usage: 288.0+ bytes\n",
+      "None\n"
+     ]
+    }
+   ],
+   "source": [
+    "print((type(df)))\n",
+    "print() \n",
+    "print((df.info()))"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "collapsed": true
+   },
+   "outputs": [],
+   "source": [
+    "#provide statistical summary for the whole dataset\n",
+    "df.describe()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 35,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "pandas.core.series.Series"
+      ]
+     },
+     "execution_count": 35,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "type(df['Area'])"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 43,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "0      19210\n",
+       "1       9500\n",
+       "2      15099\n",
+       "3       1664\n",
+       "4       6686\n",
+       "5      36137\n",
+       "6      21035\n",
+       "7        821\n",
+       "8       1048\n",
+       "9      73631\n",
+       "10    124450\n",
+       "11      8104\n",
+       "12     13035\n",
+       "Name: Area, dtype: int64"
+      ]
+     },
+     "execution_count": 43,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "df['Area']"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 37,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style>\n",
+       "    .dataframe thead tr:only-child th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: left;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>State</th>\n",
+       "      <th>Area</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>10</th>\n",
+       "      <td>Sarawak</td>\n",
+       "      <td>124450</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>9</th>\n",
+       "      <td>Sabah</td>\n",
+       "      <td>73631</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>5</th>\n",
+       "      <td>Pahang</td>\n",
+       "      <td>36137</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>6</th>\n",
+       "      <td>Perak</td>\n",
+       "      <td>21035</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>0</th>\n",
+       "      <td>Johor</td>\n",
+       "      <td>19210</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "      State    Area\n",
+       "10  Sarawak  124450\n",
+       "9     Sabah   73631\n",
+       "5    Pahang   36137\n",
+       "6     Perak   21035\n",
+       "0     Johor   19210"
+      ]
+     },
+     "execution_count": 37,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "# Ranking of land area.\n",
+    "# East Malaysia looks big!\n",
+    "df = df.sort_values('Area', ascending=False)\n",
+    "df.head(5)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 38,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "('East Malaysia Size: ', 8350)\n",
+      "('West Malaysia Size: ', 322070)\n"
+     ]
+    }
+   ],
+   "source": [
+    "# Excluding WPs, East Malaysia is larger than West Malaysia!\n",
+    "print(('East Malaysia Size: ', df['Area'][9:11].sum()))\n",
+    "print(('West Malaysia Size: ', df['Area'].sum() - df['Area'][9:11].sum()))"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 39,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "image/png": "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\n",
+      "text/plain": [
+       "<matplotlib.figure.Figure at 0x10fcb0550>"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    }
+   ],
+   "source": [
+    "# Create graph\n",
+    "df['Area'].plot.bar()\n",
+    "plt.xticks(np.arange(13), (df['State']))\n",
+    "plt.xlabel('Malaysian States')\n",
+    "plt.ylabel('Land Area in $km^2$')\n",
+    "plt.title('Malaysian States by Land Area')\n",
+    "plt.show()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Exercise"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "collapsed": true
+   },
+   "outputs": [],
+   "source": [
+    "# list all the states"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "collapsed": true
+   },
+   "outputs": [],
+   "source": [
+    "# state the total area of Sabah and Sarawak"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "collapsed": true
+   },
+   "outputs": [],
+   "source": [
+    "# plot a bar graph with ascending order of the area values"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Example"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 44,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style>\n",
+       "    .dataframe thead tr:only-child th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: left;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>Cost</th>\n",
+       "      <th>Item Purchased</th>\n",
+       "      <th>Name</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>Store 1</th>\n",
+       "      <td>22.5</td>\n",
+       "      <td>Dog Food</td>\n",
+       "      <td>Chris</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>Store 2</th>\n",
+       "      <td>2.5</td>\n",
+       "      <td>Kitty Litter</td>\n",
+       "      <td>Kevyn</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>Store 2</th>\n",
+       "      <td>5.0</td>\n",
+       "      <td>Bird Seed</td>\n",
+       "      <td>Vinod</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "         Cost Item Purchased   Name\n",
+       "Store 1  22.5       Dog Food  Chris\n",
+       "Store 2   2.5   Kitty Litter  Kevyn\n",
+       "Store 2   5.0      Bird Seed  Vinod"
+      ]
+     },
+     "execution_count": 44,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "#Example 2\n",
+    "purchase_1 = pd.Series({'Name': 'Chris',\n",
+    "                        'Item Purchased': 'Dog Food',\n",
+    "                        'Cost': 22.50})\n",
+    "purchase_2 = pd.Series({'Name': 'Kevyn',\n",
+    "                        'Item Purchased': 'Kitty Litter',\n",
+    "                        'Cost': 2.50})\n",
+    "purchase_3 = pd.Series({'Name': 'Vinod',\n",
+    "                        'Item Purchased': 'Bird Seed',\n",
+    "                        'Cost': 5.00})\n",
+    "df = pd.DataFrame([purchase_1, purchase_2, purchase_3], index=['Store 1', 'Store 2', 'Store 2'])\n",
+    "df.head()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 45,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style>\n",
+       "    .dataframe thead tr:only-child th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: left;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>Cost</th>\n",
+       "      <th>Item Purchased</th>\n",
+       "      <th>Name</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>Store 2</th>\n",
+       "      <td>2.5</td>\n",
+       "      <td>Kitty Litter</td>\n",
+       "      <td>Kevyn</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>Store 2</th>\n",
+       "      <td>5.0</td>\n",
+       "      <td>Bird Seed</td>\n",
+       "      <td>Vinod</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "         Cost Item Purchased   Name\n",
+       "Store 2   2.5   Kitty Litter  Kevyn\n",
+       "Store 2   5.0      Bird Seed  Vinod"
+      ]
+     },
+     "execution_count": 45,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "df.loc['Store 2']"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 46,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "pandas.core.frame.DataFrame"
+      ]
+     },
+     "execution_count": 46,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "type(df.loc['Store 2'])"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 47,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "pandas.core.series.Series"
+      ]
+     },
+     "execution_count": 47,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "type(df.loc['Store 1'])"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 48,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "Cost                  22.5\n",
+       "Item Purchased    Dog Food\n",
+       "Name                 Chris\n",
+       "Name: Store 1, dtype: object"
+      ]
+     },
+     "execution_count": 48,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "df.loc['Store 1']"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 49,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "22.5"
+      ]
+     },
+     "execution_count": 49,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "df.loc['Store 1', 'Cost']"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 50,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style>\n",
+       "    .dataframe thead tr:only-child th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: left;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>Store 1</th>\n",
+       "      <th>Store 2</th>\n",
+       "      <th>Store 2</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>Cost</th>\n",
+       "      <td>22.5</td>\n",
+       "      <td>2.5</td>\n",
+       "      <td>5</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>Item Purchased</th>\n",
+       "      <td>Dog Food</td>\n",
+       "      <td>Kitty Litter</td>\n",
+       "      <td>Bird Seed</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>Name</th>\n",
+       "      <td>Chris</td>\n",
+       "      <td>Kevyn</td>\n",
+       "      <td>Vinod</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "                 Store 1       Store 2    Store 2\n",
+       "Cost                22.5           2.5          5\n",
+       "Item Purchased  Dog Food  Kitty Litter  Bird Seed\n",
+       "Name               Chris         Kevyn      Vinod"
+      ]
+     },
+     "execution_count": 50,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "#transpose dataframe\n",
+    "df.T"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 51,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "Store 1    22.5\n",
+       "Store 2     2.5\n",
+       "Store 2       5\n",
+       "Name: Cost, dtype: object"
+      ]
+     },
+     "execution_count": 51,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "df.T.loc['Cost']"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "collapsed": true
+   },
+   "outputs": [],
+   "source": [
+    "df['Cost']"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "collapsed": true
+   },
+   "outputs": [],
+   "source": [
+    "df.loc['Store 1']['Cost']"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "collapsed": true
+   },
+   "outputs": [],
+   "source": [
+    "df.loc[:,['Name', 'Cost']]"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "collapsed": true
+   },
+   "outputs": [],
+   "source": [
+    "#to return the dataset without a row\n",
+    "df.drop('Store 1')"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "collapsed": true
+   },
+   "outputs": [],
+   "source": [
+    "#notice that drop doesn't not change the original dataset\n",
+    "#drop create a copy\n",
+    "df"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "collapsed": true
+   },
+   "outputs": [],
+   "source": [
+    "copy_df = df.copy()\n",
+    "copy_df = copy_df.drop('Store 1')\n",
+    "copy_df"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "collapsed": true
+   },
+   "outputs": [],
+   "source": [
+    "#use del\n",
+    "#will change the original dataset\n",
+    "del copy_df['Name']\n",
+    "copy_df"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "collapsed": true
+   },
+   "outputs": [],
+   "source": [
+    "#create a new column 'Location' with None value\n",
+    "df['Location'] = None\n",
+    "df"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Exercise"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "collapsed": true
+   },
+   "outputs": [],
+   "source": [
+    "# from which store Bird Seed was purchased?"
+   ]
+  }
+ ],
+ "metadata": {
+  "anaconda-cloud": {},
+  "kernelspec": {
+   "display_name": "Python 3",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.6.1"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 1
+}
